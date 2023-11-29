@@ -1,0 +1,53 @@
+.customSelectContainer {
+    position: relative;
+    width: 150px;
+    font-weight: 600;
+
+    .selectedOption {
+        padding: 10px;
+        background-color: #d1d5db;
+        cursor: pointer;
+        border-radius: 0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: black;
+
+        &:after {
+            content: '\25BC'; // Down arrow icon
+            padding-left: 10px;
+        }
+
+        &:hover {}
+    }
+
+    .optionContainer {
+        border-radius: 0.25rem;
+        margin-top: 0.25rem;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        background-color: #d1d5db;
+        border: 1px solid #ccc;
+        border-top: none;
+
+        .option {
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: black;
+
+
+            &:hover {
+                background-color: #9ca3af;
+            }
+
+            svg {
+                margin-right: 8px;
+            }
+        }
+    }
+}
