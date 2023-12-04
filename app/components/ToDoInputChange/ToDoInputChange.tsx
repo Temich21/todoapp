@@ -16,7 +16,7 @@ interface IToDoInputChange extends IToDoInput {
     submitEdit: (values: IToDoInput) => void;
 }
 
-const ToDoInputChange = ({ id, title, text, time, priority, completed, submitEdit }: IToDoInputChange) => {
+const ToDoInputChange = React.memo(({ id, title, text, time, priority, completed, submitEdit }: IToDoInputChange) => {
     const dispatch = useAppDispatch()
 
     return (
@@ -87,6 +87,6 @@ const ToDoInputChange = ({ id, title, text, time, priority, completed, submitEdi
         </>
 
     )
-}
+})
 
 export default ToDoInputChange

@@ -1,3 +1,4 @@
+import React from 'react'
 import { removeFromToDo, comleteOrIncompleteToDo } from '../../redux/reducers/ToDoSlice'
 import { useAppDispatch } from "../../redux/store"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,7 +14,7 @@ interface IToDoTask extends IToDoInput {
     startEditing: (id: string) => void;
 }
 
-const ToDoTask = ({ id, title, text, time, priority, completed, startEditing }: IToDoTask) => {
+const ToDoTask = React.memo(({ id, title, text, time, priority, completed, startEditing }: IToDoTask) => {
     const dispatch = useAppDispatch()
 
     return (
@@ -57,6 +58,6 @@ const ToDoTask = ({ id, title, text, time, priority, completed, startEditing }: 
             </div>
         </>
     )
-}
+})
 
 export default ToDoTask
