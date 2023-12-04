@@ -1,17 +1,15 @@
+"use client"
+
 import { toDoSlice } from "../../redux/reducers/ToDoSlice"
 import { setSortDescription, setSortCompleted } from '../../redux/reducers/SortSlice'
-import { removeFromToDo, updateToDo, comleteOrIncompleteToDo, updateTasksOrder } from '../../redux/reducers/ToDoSlice'
+import { updateToDo } from '../../redux/reducers/ToDoSlice'
 import { useAppDispatch, useAppSelector } from "../../redux/store"
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { IToDo } from "../../interfaces/IToDo"
-import { setEditingId, setTaskTitle, setTaskText, setTaskTimeToDo, setPriority } from '../../redux/reducers/ChangeSlice'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashCan, faPencil, faCheck, faFlag } from '@fortawesome/free-solid-svg-icons'
-import { faCircle, faCircleCheck } from '@fortawesome/free-regular-svg-icons'
-import { OptionKeys, options } from '../CustomSelectPriority/PriorityConstants'
-import CustomSelectPriority from "../CustomSelectPriority/CustomSelectPriority"
-import moment from 'moment'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { IToDoInput } from "../../interfaces/IToDoInput"
+import ToDoInputChange from "../ToDoInputChange/ToDoInputChange"
+import ToDoTask from "../ToDoTask/ToDoTask"
 
 const ToDoList: React.FC = () => {
     // const [completeExisting, setCompleteExisting] = useState<boolean>(false)
@@ -25,25 +23,18 @@ const ToDoList: React.FC = () => {
 
     const dispatch = useAppDispatch()
     const toDoList = useAppSelector(state => state.toDoReducer)
-    const { editingId, titleInput, textInput, timeInput, priorityInput } = useAppSelector(state => state.changeReducer)
 
     // const sortDescription = useAppSelector(state => state.sortReducer)
 
-    const startEditing = (id: number, title: string, text: string, time: string) => {
-        dispatch(setEditingId(id))
-        dispatch(setTaskTitle(title))
-        dispatch(setTaskText(text))
-        dispatch(setTaskTimeToDo(time))
+    const [editingIdBla, setEditingId] = useState<string>('')
+
+    const submitEdit = (values: IToDoInput) => {
+        dispatch(updateToDo({ ...values, completed: false, visible: true }))
+        setEditingId('')
     }
 
-    const submitEdit = () => {
-        if (editingId !== null) {
-            dispatch(updateToDo({ id: editingId, title: titleInput, text: titleInput, completed: false, visible: true, time: timeInput, priority: priorityInput }))
-            dispatch(setEditingId(null))
-            dispatch(setTaskTitle(''))
-            dispatch(setTaskText(''))
-            dispatch(setTaskTimeToDo(''))
-        }
+    const startEditing = (id: string) => {
+        setEditingId(id)
     }
 
     // const handleOnDragEnd = (result) => {
@@ -106,85 +97,21 @@ const ToDoList: React.FC = () => {
                     <li
                         key={id}
                         className='flex p-2 gap-2 m-2'
+                        style={visible ? {} : { display: 'none' }}
                     >
-                        {editingId === id ? (
+                        {editingIdBla === id ? (
                             <>
-                                <div>
-                                    {
-                                        completed ?
-                                            <FontAwesomeIcon icon={faCircleCheck} onClick={() => dispatch(comleteOrIncompleteToDo({ id, completed: false }))} style={{ color: options[priority as OptionKeys] }} />
-                                            :
-                                            <FontAwesomeIcon icon={faCircle} onClick={() => dispatch(comleteOrIncompleteToDo({ id, completed: true }))} style={{ color: options[priority as OptionKeys] }} />
-                                    }
-                                </div>
-                                <div className=''>
-                                    <div className='flex justify-between'>
-                                        <input
-                                            type="text"
-                                            value={titleInput}
-                                            className='input w-180 text-xl'
-                                            onChange={e => dispatch(setTaskTitle(e.target.value))}
-                                            onKeyDown={e => e.key === 'Enter' && submitEdit()}
-                                        />
-                                        <div className='flex gap-2'>
-                                            <FontAwesomeIcon icon={faCheck} onClick={() => submitEdit()} />
-                                            <FontAwesomeIcon icon={faTrashCan} onClick={() => dispatch(removeFromToDo(id))} />
-                                        </div>
-                                    </div>
-                                    <textarea
-                                        value={textInput}
-                                        className='textarea w-180'
-                                        onChange={e => dispatch(setTaskText(e.target.value))}
-                                    />
-                                    <div className='flex gap-6'>
-                                        <input
-                                            type='datetime-local'
-                                            value={timeInput}
-                                            className='input-datetime'
-                                            onChange={e => dispatch(setTaskTimeToDo(e.target.value))}
-                                        />
-                                        <CustomSelectPriority setPriority={(value: string) => dispatch(setPriority(value))} priorityInput={priorityInput} />
-                                    </div>
-                                </div>
+                                <ToDoInputChange id={id} title={title} text={text} time={time} priority={priority} completed={completed} submitEdit={submitEdit} />
                             </>
                         ) : (
                             <>
-                                <div>
-                                    {
-                                        completed ?
-                                            <FontAwesomeIcon icon={faCircleCheck} onClick={() => dispatch(comleteOrIncompleteToDo({ id, completed: false }))} style={{ color: options[priority as OptionKeys] }} />
-                                            :
-                                            <FontAwesomeIcon icon={faCircle} onClick={() => dispatch(comleteOrIncompleteToDo({ id, completed: true }))} style={{ color: options[priority as OptionKeys] }} />
-                                    }
-                                </div>
-                                <div
-                                    style={{
-                                        ... (completed ? { textDecoration: 'line-through' } : {}),
-                                    }}
-                                >
-                                    <div className='flex justify-between'>
-                                        <h3
-                                            className='w-180 font-bold text-xl'
-
-                                        >{title}</h3>
-                                        <div className='flex gap-2'>
-                                            <FontAwesomeIcon icon={faPencil} className='' onClick={() => startEditing(id, title, text, time, priority)} />
-                                            <FontAwesomeIcon icon={faTrashCan} onClick={() => dispatch(removeFromToDo(id))} />
-                                        </div>
-                                    </div>
-                                    <p >{text}</p>
-                                    <div className='flex gap-6'>
-                                        <div>{moment(time).format('DD-MM-YYYY HH:mm')}</div>
-                                        <div><FontAwesomeIcon icon={faFlag} style={{ color: options[priority as OptionKeys] }} /> {priority}</div>
-                                    </div>
-                                </div>
+                                <ToDoTask id={id} title={title} text={text} time={time} priority={priority} completed={completed} startEditing={startEditing} />
                             </>
                         )}
-
                     </li>))
                 }
             </ul>
-
+            {toDoList.length === 0 && <div className="text-2xl pl-2">No Tasks!</div>}
             {/* <DragDropContext onDragEnd={handleOnDragEnd}>
                 <Droppable droppableId="droppable">
                     {(provided) => (

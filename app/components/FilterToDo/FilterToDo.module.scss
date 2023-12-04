@@ -1,0 +1,61 @@
+.customSelectContainer {
+    position: relative;
+    font-weight: 600;
+
+    .selectedOption {
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        color: black;
+        transition: background-color 0.5s ease;
+        // &:after {
+        //     content: '\25BC'; // Down arrow icon
+        //     padding-left: 10px;
+        // }
+
+        &:hover {
+            background-color: #dee1e6;
+        }
+    }
+
+    .optionContainer {
+        width: 345px;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        margin-top: 0.25rem;
+        position: absolute;
+        top: 100%;
+        left: -125px;
+        right: 0;
+        z-index: 10;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-top: none;
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+
+        .option {
+            direction: rtl;
+        }
+
+        // .option {
+        //     padding: 10px;
+        //     cursor: pointer;
+        //     display: flex;
+        //     align-items: center;
+        //     color: black;
+
+
+        //     &:hover {
+        //         background-color: #9ca3af;
+        //     }
+
+        //     svg {
+        //         margin-right: 8px;
+        //     }
+        // }
+    }
+}

@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import CustomSelectPriority from '../CustomSelectPriority/CustomSelectPriority'
 import { addToDo } from '../../redux/reducers/ToDoSlice'
@@ -40,18 +42,25 @@ const ToDoInput: React.FC = () => {
                     setFieldValue,
                     values,
                     errors,
-                    touched
+                    touched,
+                    submitForm
                 }: FormikHelpers<IToDoInput>) => (
                     <Form className='flex flex-col border-2 rounded-md p-2 gap-2 mb-4'>
-                        <Field name='title' type="text" className='input text-xl' placeholder="Task name" />
+                        <Field
+                            name='title'
+                            type="text"
+                            className='input text-xl'
+                            placeholder="Task title"
+                            onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && submitForm()}
+                        />
                         {touched.title && errors.title && <div className='text-red-600 font-semibold pl-3.5'>{errors.title}</div>}
                         <Field name='text' as="textarea" className='textarea' placeholder="Describe what needs to be done" />
                         <div className='flex justify-between'>
-                            <div className='flex gap-2'>
+                            <div className='flex gap-3'>
                                 <Field name='time' type='datetime-local' className='input-datetime' />
                                 <CustomSelectPriority setPriority={(value: string) => setFieldValue("priority", value)} priorityInput={values.priority} />
                             </div>
-                            <div className='flex gap-2'>
+                            <div className='flex gap-3'>
                                 <button type='reset' className='btn-cancel'>Clear</button>
                                 <button type='submit' className='btn'>Add task</button>
                             </div>

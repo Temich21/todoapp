@@ -29,7 +29,7 @@ module.exports = plugin(function ({ addComponents }) {
             fontWeight: '600',
             border: 'none',
             width: '190px',
-            backgroundColor: '#d1d5db',
+            backgroundColor: '#dee1e6',
             color: 'black',
             '&:focus': {
                 outline: 'none',
@@ -38,6 +38,7 @@ module.exports = plugin(function ({ addComponents }) {
             },
             '&:hover': {
                 borderColor: '#9ca3af',
+                backgroundColor: '#9ca3af',
             },
         },
         '.select-option': {

@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { persistReducer, persistStore } from 'redux-persist'
+// import { createWrapper } from "next-redux-wrapper"
 import storage from 'redux-persist/lib/storage'
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { TypedUseSelectorHook, useDispatch, useSelector, useStore } from 'react-redux'
 import { rootReducer } from './rootReducer'
 
 const persistConfig = {
@@ -11,15 +12,20 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-export const store = configureStore({
-    reducer: persistedReducer,
-    devTools: true,
-})
+export const makeStore = () =>
+    configureStore({
+        reducer: persistedReducer,
+        devTools: true,
+    })
 
-export const persistor = persistStore(store)
 
-export type AppDispatch = typeof store.dispatch
-export const useAppDispatch = () => useDispatch<AppDispatch>()
+// export const wrapper = createWrapper(makeStore)
 
-export type RootState = ReturnType<typeof store.getState>
+export type AppStore = ReturnType<typeof makeStore>
+export const useAppStore: () => AppStore = useStore
+
+export type AppDispatch = AppStore['dispatch']
+export const useAppDispatch: () => AppDispatch = useDispatch
+
+export type RootState = ReturnType<AppStore['getState']>
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
