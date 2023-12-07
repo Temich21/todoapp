@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { makeStore, AppStore } from './store'
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
+import LoadingSkeleton from '../components/LoadingSkeleton/LoadingSkeleton'
 
 export default function StoreProvider({
     children
@@ -21,7 +22,7 @@ export default function StoreProvider({
 
     return (
         <Provider store={storeRef.current}>
-            <PersistGate loading={<div>Loading</div>} persistor={persistorRef.current}>
+            <PersistGate loading={<LoadingSkeleton />} persistor={persistorRef.current}>
                 {children}
             </PersistGate>
         </Provider>

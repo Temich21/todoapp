@@ -36,9 +36,9 @@ const ToDoTask = React.memo(({ id, title, text, time, priority, completed, start
                 }
             </div>
             <div
-                style={{
-                    ... (completed ? { textDecoration: 'line-through', textDecorationColor: options[priority as OptionKeys], textDecorationThickness: '2px' } : {}),
-                }}
+                style={
+                    completed ? { textDecoration: 'line-through', textDecorationColor: options[priority as OptionKeys], textDecorationThickness: '2px' } : {}
+                }
             >
                 <div className='flex justify-between'>
                     <h3

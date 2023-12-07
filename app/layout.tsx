@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './styles/globals.scss'
 import StoreProvider from "./redux/StoreProvider"
-// import { wrapper } from './redux/store'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,5 +25,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-// wrapper.withRedux(RootLayout)
