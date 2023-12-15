@@ -1,0 +1,45 @@
+{
+  "todos": [
+    {
+      "id": "adasxzacx",
+      "title": "Buy milk",
+      "text": "You can buy it in Tesco",
+      "completed": false,
+      "time": "2023-12-12T08:30",
+      "priority": "Priority 1"
+    },
+    {
+      "id": "asczcasds",
+      "title": "Throw garbage",
+      "text": "",
+      "completed": true,
+      "time": "2023-12-10T10:30",
+      "priority": "Priority 3"
+    },
+    {
+      "id": "ppavcxear",
+      "title": "Make an app",
+      "text": "Make to todo app",
+      "completed": false,
+      "time": "2023-12-16T15:30",
+      "priority": "Priority 2"
+    },
+    {
+      "id": "Fri Dec 15 2023 13:22:20 GMT+0100 (Центральная Европа, стандартное время)",
+      "title": "ssda",
+      "text": "asdasd",
+      "time": "2023-12-09T13:22",
+      "completed": false,
+      "priority": "Priority 4"
+    }
+  ],
+  "login": {
+    "email": "rahmat97@mail.ru",
+    "password": "12345"
+  },
+  "registration": [
+    {
+      "email": "rahmat97@mail.ru"
+    }
+  ]
+}

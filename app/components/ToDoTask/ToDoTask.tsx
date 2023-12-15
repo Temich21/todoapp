@@ -19,7 +19,7 @@ const ToDoTask = React.memo(({ id, title, text, time, priority, completed, start
 
     return (
         <>
-            <div>
+            <div className='hover:cursor-pointer'>
                 {
                     completed ?
                         <FontAwesomeIcon
@@ -46,8 +46,8 @@ const ToDoTask = React.memo(({ id, title, text, time, priority, completed, start
 
                     >{title}</h3>
                     <div className='flex gap-2'>
-                        <FontAwesomeIcon icon={faPencil} className='' onClick={() => startEditing(id)} />
-                        <FontAwesomeIcon icon={faTrashCan} onClick={() => dispatch(removeFromToDo(id))} />
+                        <FontAwesomeIcon icon={faPencil} className='hover:cursor-pointer' onClick={() => startEditing(id)} />
+                        <FontAwesomeIcon icon={faTrashCan} className='hover:cursor-pointer' onClick={() => dispatch(removeFromToDo(id))} />
                     </div>
                 </div>
                 <p >{text}</p>

@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { persistReducer, persistStore } from 'redux-persist'
+import { persistReducer } from 'redux-persist'
 // import { createWrapper } from "next-redux-wrapper"
 import storage from 'redux-persist/lib/storage'
 import { TypedUseSelectorHook, useDispatch, useSelector, useStore } from 'react-redux'
 import { rootReducer } from './rootReducer'
+import { todoAPI } from '../services/ToDoService'
 
 const persistConfig = {
     key: 'root',
@@ -16,8 +17,9 @@ export const makeStore = () =>
     configureStore({
         reducer: persistedReducer,
         devTools: true,
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware().concat(todoAPI.middleware)
     })
-
 
 // export const wrapper = createWrapper(makeStore)
 

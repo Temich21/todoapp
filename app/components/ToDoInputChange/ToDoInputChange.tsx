@@ -21,7 +21,7 @@ const ToDoInputChange = React.memo(({ id, title, text, time, priority, completed
 
     return (
         <>
-            <div>
+            <div className='hover:cursor-pointer'>
                 {
                     completed ?
                         <FontAwesomeIcon
@@ -61,13 +61,13 @@ const ToDoInputChange = React.memo(({ id, title, text, time, priority, completed
                             <Field
                                 name='title'
                                 type="text"
-                                className='input w-180 text-xl'
+                                className='input w-180 text-xl mb-1'
                                 placeholder="Task title"
                                 onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && submitForm()}
                             />
                             <div className='flex gap-2'>
-                                <FontAwesomeIcon icon={faCheck} onClick={() => submitForm()} />
-                                <FontAwesomeIcon icon={faTrashCan} onClick={() => dispatch(removeFromToDo(id))} />
+                                <FontAwesomeIcon icon={faCheck} className='hover:cursor-pointer' onClick={() => submitForm()} />
+                                <FontAwesomeIcon icon={faTrashCan} className='hover:cursor-pointer' onClick={() => dispatch(removeFromToDo(id))} />
                             </div>
                         </div>
                         {touched.title && errors.title && <div className='text-red-600 font-semibold pl-3.5'>{errors.title}</div>}
