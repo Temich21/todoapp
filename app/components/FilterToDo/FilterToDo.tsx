@@ -15,7 +15,7 @@ const FilterToDo = () => {
 
     const ref = useRef(null)
 
-    const { sortDescription, sortCompleted, sortDirection } = useAppSelector(state => state.sortReducer)
+    const { sortDescription, sortCompleted } = useAppSelector(state => state.sortReducer)
 
     const changeSortCompletedToDo = (eventKey: string) => {
         switch (eventKey) {

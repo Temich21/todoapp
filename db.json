@@ -25,21 +25,44 @@
       "priority": "Priority 2"
     },
     {
-      "id": "Fri Dec 15 2023 13:22:20 GMT+0100 (Центральная Европа, стандартное время)",
-      "title": "ssda",
-      "text": "asdasd",
-      "time": "2023-12-09T13:22",
+      "id": "Sun Dec 17 2023 12:33:19 GMT+0100 (Центральная Европа, стандартное время)",
+      "title": "sdasd",
+      "text": "asdasdas",
       "completed": false,
-      "priority": "Priority 4"
+      "time": "2023-12-14T12:33",
+      "priority": "Priority 3"
     }
   ],
-  "login": {
-    "email": "rahmat97@mail.ru",
-    "password": "12345"
-  },
-  "registration": [
+  "users": [
     {
-      "email": "rahmat97@mail.ru"
+      "id": "asdxzcwqdw",
+      "email": "rahmat97@mail.ru",
+      "password": "12345"
+    },
+    {
+      "id": "asdasdsa",
+      "email": "user1@mail.com",
+      "password": "123455"
+    },
+    {
+      "id": "zxczfawd",
+      "email": "user2@mail.com",
+      "password": "1234455"
+    },
+    {
+      "id": "asdxzcxzc",
+      "email": "user3@mail.com",
+      "password": "1234455"
+    },
+    {
+      "id": "Sun Dec 17 2023 12:31:30 GMT+0100 (Центральная Европа, стандартное время)",
+      "email": "rahmat97@mail.rua",
+      "password": "12345"
+    },
+    {
+      "id": "Sun Dec 17 2023 12:37:05 GMT+0100 (Центральная Европа, стандартное время)",
+      "email": "rahmat97@mail.ruab",
+      "password": "12345"
     }
   ]
 }

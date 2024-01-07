@@ -1,6 +1,6 @@
 "use client"
 
-import { updateToDo, updateTasksOrder } from '../../redux/reducers/ToDoSlice'
+import { updateTasksOrder } from '../../redux/reducers/ToDoSlice'
 import { useAppDispatch, useAppSelector } from "../../redux/store"
 import React, { useState } from 'react'
 import { IToDo } from "../../interfaces/IToDo"
@@ -45,7 +45,7 @@ const ToDoList: React.FC = () => {
     const [Time, setTime] = useState('')
     const [Priority, setPriority] = useState('')
 
-    const { data: todos, error, isLoading } = useGetToDoQuery("");
+    const { data: todos, error, isLoading } = useGetToDoQuery()
     const [createToDo] = useCreateToDoMutation()
     const [updateToDo] = useUpdateToDoMutation()
     const [deleteToDo] = useDeleteToDoMutation()

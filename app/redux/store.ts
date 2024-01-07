@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage'
 import { TypedUseSelectorHook, useDispatch, useSelector, useStore } from 'react-redux'
 import { rootReducer } from './rootReducer'
 import { todoAPI } from '../services/ToDoService'
+import { userAPI } from '../services/AuthService'
 
 const persistConfig = {
     key: 'root',
@@ -18,7 +19,9 @@ export const makeStore = () =>
         reducer: persistedReducer,
         devTools: true,
         middleware: (getDefaultMiddleware) =>
-            getDefaultMiddleware().concat(todoAPI.middleware)
+            getDefaultMiddleware()
+                .concat(todoAPI.middleware)
+                .concat(userAPI.middleware)
     })
 
 // export const wrapper = createWrapper(makeStore)

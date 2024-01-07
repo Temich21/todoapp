@@ -1,16 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IToDo } from "../../interfaces/IToDo"
 
 interface SortState {
     sortDescription: string
     sortCompleted: string
-    sortDirection: string
 }
 
 const initialState: SortState = {
-    sortDescription: 'Time',
+    sortDescription: 'Time Ascending',
     sortCompleted: 'All',
-    sortDirection: 'Ascending'
 }
 
 const sortSlice = createSlice({
@@ -26,5 +23,5 @@ const sortSlice = createSlice({
     },
 })
 
-export const { setSortDescription, setSortCompleted, sortDirection } = sortSlice.actions
+export const { setSortDescription, setSortCompleted } = sortSlice.actions
 export default sortSlice.reducer

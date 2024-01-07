@@ -10,8 +10,12 @@ import { v4 as uuidv4 } from 'uuid'
 import { Formik, Field, Form, FormikHelpers } from 'formik'
 import { Persist } from 'formik-persist'
 import * as Yup from 'yup'
+import useSound from 'use-sound'
+import meowSound from '../../sounds/catVoice.mp3'
 
 const ToDoInput: React.FC = () => {
+    const [play] = useSound(meowSound)
+
     const dispatch = useAppDispatch()
 
     const submit = (values: IToDoInput) => {
@@ -21,6 +25,7 @@ const ToDoInput: React.FC = () => {
             completed: false,
             visible: true
         }
+        play()
         dispatch(addToDo(data))
     }
 
